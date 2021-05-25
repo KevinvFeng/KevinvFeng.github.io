@@ -16,6 +16,17 @@
     
     <script src="/js/vue.js"></script>
     <script src="/js/antd.min.js"></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWLLPQ749C"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JWLLPQ749C');
+    </script>
+    
 <meta name="generator" content="Hexo 5.3.0"></head>
 
 <body>
@@ -85,13 +96,6 @@
             <span>tags</span>
         </a>
         
-        <a target="_blank" rel="noopener" href="https://en.korilin.com">
-            <span>
-                <a-icon type="compass" theme="filled" />
-            </span>
-            <span>英文博客</span>
-        </a>
-        
     </div>
 
     <div :class="'phone-menu ' + menu_show" id="phone-menu">
@@ -148,15 +152,6 @@
                 </div>
             </a>
             
-            <a target="_blank" rel="noopener" href="https://en.korilin.com">
-                <div class="item">
-                    <div style="min-width:20px; max-width:50px; width: 10%">
-                        <a-icon type="compass" theme="filled" />
-                    </div>
-                    <div style="min-width:100px;max-width: 150%;width: 20%;">英文博客</div>
-                </div>
-            </a>
-            
         </div>
         <div class="curtain" v-show="menu_show"></div>
     </div>
@@ -167,6 +162,66 @@
                 <div id="main">
                     
 <div id="archives">
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2021/5/25" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2021/5/25</div>
+                <a href="/2021/05/25/HJT-VAE/">
+                    <h3>HJT-VAE模型</h3>
+                </a>
+                <div class="info">
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/Machine-Learning" style=color:#879cff>
+                                Machine Learning
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
+    
+    <a-timeline>
+        <a-timeline-item timestamp="2021/5/24" placement="top" color="#a5c2f5">
+            <a-card hoverable>
+                <div class="item-time">2021/5/24</div>
+                <a href="/2021/05/24/kl-divergence/">
+                    <h3>深入理解KL Divergence</h3>
+                </a>
+                <div class="info">
+                    
+
+                    
+                    <span class="tags">
+                        <span class="icon">
+                            <a-icon type="tags" />
+                        </span>
+                        
+                        <span class="tag">
+                            
+                            <a href="/tags/Machine-Learning" style=color:#ffa2c4>
+                                Machine Learning
+                            </a>
+                        </span>
+                        
+                    </span>
+                    
+                </div>
+            </a-card>
+        </a-timeline-item>
+    </a-timeline>
     
     <a-timeline>
         <a-timeline-item timestamp="2021/5/21" placement="top" color="#a5c2f5">
@@ -186,8 +241,8 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/Machine-Learing" style=color:#ff7d73>
-                                Machine Learing
+                            <a href="/tags/Machine-Learning" style=color:#ffa2c4>
+                                Machine Learning
                             </a>
                         </span>
                         
@@ -216,14 +271,14 @@
                         
                         <span class="tag">
                             
-                            <a href="/tags/政治" style=color:#1bccbc>
+                            <a href="/tags/政治" style=color:#ffa2c4>
                                 政治
                             </a>
                         </span>
                         
                         <span class="tag">
                             
-                            <a href="/tags/经济" style=color:#1bccbc>
+                            <a href="/tags/经济" style=color:#00bcd4>
                                 经济
                             </a>
                         </span>
@@ -241,7 +296,7 @@
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2021 Kevin Feng的图书馆
+            © 2021 - 2021 Kevin Feng的图书馆
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
             @Kevin Feng

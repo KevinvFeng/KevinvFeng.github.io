@@ -16,6 +16,17 @@
     
     <script src="/js/vue.js"></script>
     <script src="/js/antd.min.js"></script>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JWLLPQ749C"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-JWLLPQ749C');
+    </script>
+    
 <meta name="generator" content="Hexo 5.3.0"></head>
 
 <body>
@@ -85,13 +96,6 @@
             <span>tags</span>
         </a>
         
-        <a target="_blank" rel="noopener" href="https://en.korilin.com">
-            <span>
-                <a-icon type="compass" theme="filled" />
-            </span>
-            <span>英文博客</span>
-        </a>
-        
     </div>
 
     <div :class="'phone-menu ' + menu_show" id="phone-menu">
@@ -148,15 +152,6 @@
                 </div>
             </a>
             
-            <a target="_blank" rel="noopener" href="https://en.korilin.com">
-                <div class="item">
-                    <div style="min-width:20px; max-width:50px; width: 10%">
-                        <a-icon type="compass" theme="filled" />
-                    </div>
-                    <div style="min-width:100px;max-width: 150%;width: 20%;">英文博客</div>
-                </div>
-            </a>
-            
         </div>
         <div class="curtain" v-show="menu_show"></div>
     </div>
@@ -178,7 +173,15 @@
             </span>
             2021/5/21
         </span>
-
+        
+            <span class="date">
+            <span class="icon">
+                <a-icon type="book" theme="filled" />
+            </span>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">阅读数 <span id="busuanzi_value_page_pv"></span></span>
+        </span>
+            
         
 
         
@@ -190,8 +193,8 @@
             
             <span class="tag">
                 
-                <a href="/tags/Machine-Learing" style=color:#ff7d73>
-                    Machine Learing
+                <a href="/tags/Machine-Learning" style=color:#ff7d73>
+                    Machine Learning
                 </a>
             </span>
             
@@ -200,7 +203,9 @@
     </div>
 
     <div class="content" v-pre>
-        <h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="AutoEncoder"><a href="#AutoEncoder" class="headerlink" title="AutoEncoder"></a>AutoEncoder</h2><p>AutoEncoder是一个很基本的网络结构，输入是X输出希望也是X，不过中间会有一层latent hidden layer的维度要远小于输入和输出维度。一般这个中间层的维度也就几十左右。</p>
+        <p>VAE模型是一个生成模型，用于生成相似的图片，他比GAN早一年出现。与GAN相比虽然生成的图片模糊程度比较高，但是训练稳定，依然有着很大的用途</p>
+<a id="more"></a>
+<h1 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h1><h2 id="AutoEncoder"><a href="#AutoEncoder" class="headerlink" title="AutoEncoder"></a>AutoEncoder</h2><p>AutoEncoder是一个很基本的网络结构，输入是X输出希望也是X，不过中间会有一层latent hidden layer的维度要远小于输入和输出维度。一般这个中间层的维度也就几十左右。</p>
 <h3 id="AutoEncoder的作用"><a href="#AutoEncoder的作用" class="headerlink" title="AutoEncoder的作用"></a>AutoEncoder的作用</h3><p>AE的用途有不少，主要的核心任务是可以用于降维，类似PCA。 同时也可以生成不同的结果用于数据增强。</p>
 <h1 id="VAE模型"><a href="#VAE模型" class="headerlink" title="VAE模型"></a>VAE模型</h1><h2 id="VAE基础结构"><a href="#VAE基础结构" class="headerlink" title="VAE基础结构"></a>VAE基础结构</h2><p>VAE在AE的模型上稍微改变了对latent hidden layer。将latent z 拆成了两个，mu以及logvar，之后再将它们合起来。</p>
 <p><img src="/2021/05/21/VAE-Model/vae_sample_with_kld.png"><br>图为用vae训练后根据不同mu，sample出的图片。可以明显的看出图片渐变的过程。我们希望渐变的过程是平滑的，这样就可以方便的找到两点之间的结果用于产生新的图片<br><img src="/2021/05/21/VAE-Model/vae_sample_no_kld.png"><br>我发现不用kld其实也差不多，但是下面的两张图区别就比较大了<br><img src="/2021/05/21/VAE-Model/vae_input_scatter_with_kld.png"><br><img src="/2021/05/21/VAE-Model/vae_input_scatter_no_kld.png"><br>不加kld的话，z的数值会比较大， 从而导致进行合理sample的时候会更困难，不利于sample.</p>
@@ -208,18 +213,12 @@
     </div>
 
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-    <div id="comment">
-        <div id="gitalk-container">
-        </div>
-    </div>
-    
 </div>
                      
 <footer id="footer">
     <div class="footer-wrap">
         <div>
-            © 2018 - 2021 Kevin Feng的图书馆
+            © 2021 - 2021 Kevin Feng的图书馆
             <span class="footer-icon">
                 <a-icon type="flag" theme="filled" /></span>
             @Kevin Feng
@@ -277,21 +276,6 @@
             }
         }
     })
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script>
-    const gitalk = new Gitalk({
-        clientID: '',
-        clientSecret: '',
-        repo: 'hexo-theme-particle',      // The repository of store comments,
-        owner: 'korilin',
-        admin: ['korilin'],
-        language: 'en',
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: true  // Facebook-like distraction free mode
-    })
-    gitalk.render('gitalk-container')
 </script>
 
 </body>

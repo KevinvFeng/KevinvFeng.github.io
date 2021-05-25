@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin Feng的图书馆 || </title>
+    <title>Kevin Feng的图书馆 || 深入理解KL Divergence</title>
     <meta name="author" content="Kevin Feng">
     <meta name="description" content=" ">
     <meta name="keywords" content=" ">
@@ -160,138 +160,119 @@
                 </div>
 
                 <div id="main">
-                    
-<div id="archives">
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2021/5/25" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2021/5/25</div>
-                <a href="/2021/05/25/HJT-VAE/">
-                    <h3>HJT-VAE模型</h3>
-                </a>
-                <div class="info">
-                    
+                     
+<link rel="stylesheet" href="/css/post-body.css">
+<div class="article">
+    <div>
+        <h1>深入理解KL Divergence </h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <a-icon type="calendar" theme="filled" />
+            </span>
+            2021/5/24
+        </span>
+        
+            <span class="date">
+            <span class="icon">
+                <a-icon type="book" theme="filled" />
+            </span>
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <span id="busuanzi_container_page_pv">阅读数 <span id="busuanzi_value_page_pv"></span></span>
+        </span>
+            
+        
 
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Machine-Learning" style=color:#00bcd4>
-                                Machine Learning
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2021/5/24" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2021/5/24</div>
-                <a href="/2021/05/24/kl-divergence/">
-                    <h3>深入理解KL Divergence</h3>
-                </a>
-                <div class="info">
-                    
+        
 
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Machine-Learning" style=color:#ff7d73>
-                                Machine Learning
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2021/5/21" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2021/5/21</div>
-                <a href="/2021/05/21/VAE-Model/">
-                    <h3>VAE模型及其变种</h3>
+        <span class="tags">
+            <span class="icon">
+                <a-icon type="tags" theme="filled" />
+            </span>
+            
+            <span class="tag">
+                
+                <a href="/tags/Machine-Learning" style=color:#00bcd4>
+                    Machine Learning
                 </a>
-                <div class="info">
-                    
+            </span>
+            
+        </span>
+        
+    </div>
 
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/Machine-Learning" style=color:#1bccbc>
-                                Machine Learning
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
-    
-    <a-timeline>
-        <a-timeline-item timestamp="2020/12/27" placement="top" color="#a5c2f5">
-            <a-card hoverable>
-                <div class="item-time">2020/12/27</div>
-                <a href="/2020/12/27/Thinking-of-Political-Economy/">
-                    <h3>读《分析与思考》</h3>
-                </a>
-                <div class="info">
-                    
+    <div class="content" v-pre>
+        <p>KL Divergence又叫KL散度，是VAE模型中的核心之一。</p>
+<a id="more"></a>
+<h2 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h2><h3 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h3><p>信息熵在信息学中，体现了需要信息量的多少。举两个例子：<br>如果一个变量X 有50%的概率是0，50%的概率是1，则我们至少需要一个bit来确定它是0还是1。但如果这个变量X有100%的概率是0，我们就不需要任何额外的信息确定这个变量的值。<br>体现在公式上：<br>$H(x) = - \Sigma p(x)lg(p(x)) $<br>当X为第一种情况的时候（50%概率是0或1）<br>$H(x) = -\frac{1}{2}lg(\frac{1}{2}) * 2 = 1$<br>X为第二种情况的时候（100%是0）<br>$H(x) = -1*lg(1) = 0$<br>同理,在X可以等概率取0，1，2，3的时候，也就是每种概率都是25%的时候，$H(x) = 2$<br>这个信息熵可以体现在需要最少用多少的01编码表示这个变量。</p>
+<table>
+<thead>
+<tr>
+<th align="center">x</th>
+<th align="center">p(x)</th>
+<th align="center">p(x)编码</th>
+<th align="center">q(x)</th>
+<th align="center">q(x)最优编码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0.25</td>
+<td align="center">00</td>
+<td align="center">0.5</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">0.25</td>
+<td align="center">01</td>
+<td align="center">0.25</td>
+<td align="center">10</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">0.25</td>
+<td align="center">10</td>
+<td align="center">0.125</td>
+<td align="center">110</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">0.25</td>
+<td align="center">11</td>
+<td align="center">0.125</td>
+<td align="center">111</td>
+</tr>
+<tr>
+<td align="center">比如上面这个P(x) 每一中可能性的概率都是0.25，我们可以用00表示0，01表示1，10表示2，11表示3（也就是二进制啦）。在这种情况下，表示每一种情况都需要用两个bit进行编码。</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">而Q(X)，由于0，1，2，3的概率是不同的，我们可以改变编码方式</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">通过这种方式，我们降低了表示所有可能时编码的期望长度，现在只需要$0.5<em>1+0.25</em>2 + 0.125<em>3</em>2 = 1.75$个bit就可以表示变量X。这与信息熵公式是吻合的。</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h3 id="交叉熵"><a href="#交叉熵" class="headerlink" title="交叉熵"></a>交叉熵</h3><p>交叉熵包含“交叉”二字，所以意味着这需要两个分布，p以及q。交叉熵的实际意义是用p(x)的编码方式编码q(x)会需要多少信息。依然用上表举例，用p(x)编码q(x)：<br>$H(q,p) = 0.5<em>2+0.25</em>2+0.125<em>2 = 2$，即平均需要2bits表示q(x)，这大于最优方案1.75bit<br>那反过来用q(x)编码p(x)呢？<br>$H(p,q) = 0.25</em>1+0.25<em>2+0.25</em>3*2 = 2.25$ 同样比p(x)的熵 2要大。</p>
+<h2 id="KL散度"><a href="#KL散度" class="headerlink" title="KL散度"></a>KL散度</h2><p>回归正题，KL散度就是两个分布的熵的差异，也就是交叉熵减最优编码的熵<br>$KL(p||q) = H(p,q)-H(p)$<br>用上面的例子来说，就是 2.25-2 = 0.25<br>KL散度相较于交叉熵的优势在于，当两个分布相同的时候loss为0，而交叉熵并不</p>
 
-                    
-                    <span class="tags">
-                        <span class="icon">
-                            <a-icon type="tags" />
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/政治" style=color:#ff7d73>
-                                政治
-                            </a>
-                        </span>
-                        
-                        <span class="tag">
-                            
-                            <a href="/tags/经济" style=color:#ffa2c4>
-                                经济
-                            </a>
-                        </span>
-                        
-                    </span>
-                    
-                </div>
-            </a-card>
-        </a-timeline-item>
-    </a-timeline>
+    </div>
+
     
 </div>
-
                      
 <footer id="footer">
     <div class="footer-wrap">
