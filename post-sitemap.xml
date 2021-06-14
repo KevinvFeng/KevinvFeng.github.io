@@ -9,6 +9,14 @@
 
 
     <url>
+        <loc>http://kevinvfeng.github.io/2021/05/25/HJT-VAE/</loc>
+        <lastmod>2021-06-14T13:40:30.773Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://kevinvfeng.github.io/2021/06/13/e-cny/</loc>
         <lastmod>2021-06-13T08:08:59.980Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -26,14 +34,6 @@
 
     <url>
         <loc>http://kevinvfeng.github.io/2021/05/26/CVAE/</loc>
-        <lastmod>2021-06-05T03:12:51.561Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://kevinvfeng.github.io/2021/05/25/HJT-VAE/</loc>
         <lastmod>2021-06-05T03:12:51.561Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
