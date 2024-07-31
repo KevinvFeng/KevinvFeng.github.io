@@ -36,3 +36,6 @@ jekyll 有很多定制的模板, 为了方便可以直接去模板网站搜一�
 ## 更新博客内容
 首先 ```git clone```对应的repo.
 之后在_posts文件夹新建对应格式的 md 文件然后仿照其他示例填写对应的文件头描述信息 剩下的更新内容就好了. 最后别忘了 ```git commit```
+
+## TeXt Theme 教程链接
+[TeXt Theme](https://kitian616.github.io/jekyll-TeXt-theme/docs/zh/quick-start)
