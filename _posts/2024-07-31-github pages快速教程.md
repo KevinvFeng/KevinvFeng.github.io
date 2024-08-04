@@ -1,10 +1,6 @@
 ---
 title: Github Pages快速教程
 tags: github 网站 blog 教程 
-article_header:
-  type: cover
-  image:
-    src: /screenshot.jpg
 ---
 
 Github Pages是一个快速免费构建个人博客的方法, 现在可以结合 jekyll(博客模板 类似 hexo) 通过 github actions自动化构建博客网站, 用户只需要```git commit``` markdown文件就可以自动更新博客到对应的网址上, 比较方便.
